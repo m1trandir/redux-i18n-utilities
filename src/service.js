@@ -9,7 +9,14 @@ export const createService = () => {
     return language;
   };
 
-  const get = (languageName, tag) => languages[languageName].get(tag);
+  const get = (languageName, tag, params) => {
+    const value = languages[languageName].get(tag);
+    if (typeof value === 'function') {
+      return value(params);
+    }
+
+    return value;
+  };
 
   return { createLanguage, get };
 };
