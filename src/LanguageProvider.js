@@ -9,7 +9,7 @@ class LanguageProvider extends Component {
     this.store = context.store;
     this.translate = this.translate.bind(this);
   }
-  translate(tag) {
+  translate(tag, params) {
     // TODO: warn only in development environments
     if (typeof tag === 'undefined') {
       // eslint-disable-next-line no-console
@@ -18,7 +18,7 @@ class LanguageProvider extends Component {
 
     const state = this.store.getState();
     const languageName = this.getCurrentLanguage(state);
-    const text = this.languageService.get(languageName, tag);
+    const text = this.languageService.get(languageName, tag, params);
 
     if (typeof text === 'undefined') {
       // eslint-disable-next-line no-console
